@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import random
+import re
 from enum import Enum
 
 class Noun_Type(Enum):
@@ -251,16 +252,14 @@ def sentence_1():
     noun2 = random.choice(nouns)
     article2 = pick_article_from_noun(noun2[1])
 
-    return "{} {} {} {} {} {}!".format(article[0], noun[0], verb[0], preposition, article2[0], noun2[0])
+    return "{} {} {} {} {} {}".format(article[0], noun[0], verb[0], preposition, article2[0], noun2[0])
 
-def sentence_2():
-    noun = random.choice(nouns)
-    article = pick_article_from_noun(noun[1])
-    verb = pick_verb_from_noun(noun[1])
-    preposition = pick_preposition_from_verb(verb)
-    noun2 = random.choice(nouns)
+def capitalise(string):
+    a = string[0].upper()+string[1:]+"."
+    a2 = re.sub("  ", " ", a)
+    return re.sub("^ ", "", a2)
 
-    return "{} {} {} {} {}!".format(article[0], noun[0], verb[0], preposition, noun2[0])
 
-print(sentence_1())
+for i in range(100):
+    print(capitalise(sentence_1()))
 
