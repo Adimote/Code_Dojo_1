@@ -3,19 +3,16 @@ import random
 import re
 from enum import Enum
 
-
 class Noun_Type(Enum):
     unspecified = 0
     animal = 1
     human = 2
     inanimate = 3
 
-
 class Article_Type(Enum):
     improper = 0
     human = 2
     inanimate = 3
-
 
 class Verb_Type(Enum):
     either = 0
@@ -1557,7 +1554,8 @@ nouns = [("cat", Noun_Type.animal), ("mat", Noun_Type.inanimate), ("banana", Nou
          ("wrap", Noun_Type.inanimate),
          ("yesterday", Noun_Type.inanimate)]
 
-articles = [("the", Article_Type.improper), ("their", Article_Type.improper), ("my", Article_Type.improper),
+
+articles = [("the", Article_Type.improper), ("their", Article_Type.improper), ("my", Article_Type.improper), ("her" , Article_Type.improper),
             ("a", Article_Type.improper), ("", Article_Type.human), ("sir", Article_Type.human)]
 
 verbs = [("sat", Verb_Type.either, [Prepositions.on_, Prepositions.in_]),
@@ -1781,19 +1779,13 @@ def sentence_1():
 
     return "{} {} {} {} {} {}".format(article[0], noun[0], verb[0], preposition, article2[0], noun2[0])
 
-def sentence_2():
-    noun = random.choice(nouns)
-    article = pick_article_from_noun(noun[1])
-    verb = pick_verb_from_noun(noun[1])
-    preposition = pick_preposition_from_verb(verb)
-    noun2 = random.choice(nouns)
-
 def capitalise(string):
     a = string[0].upper()+string[1:]+"."
     a2 = re.sub("  ", " ", a)
     return re.sub("^ ", "", a2)
 
+    return "{} {} {} {} {}!".format(article[0], noun[0], verb[0], preposition, noun2[0])
+
 for i in range(100):
     print(capitalise(sentence_1()))
 
-print(sentence_1())
