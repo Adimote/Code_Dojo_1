@@ -29,8 +29,8 @@ class Prepositions(Enum):
 nouns = [("cat", Noun_Type.animal), ("mat", Noun_Type.inanimate), ("banana", Noun_Type.inanimate),
          ("code dojo", Noun_Type.inanimate), ("Tom", Noun_Type.human)]
 
-articles = [("The", Article_Type.improper), ("Their", Article_Type.improper), ("My", Article_Type.improper),
-            ("A", Article_Type.improper), ("", Article_Type.human), ("Sir", Article_Type.human)]
+articles = [("the", Article_Type.improper), ("their", Article_Type.improper), ("my", Article_Type.improper),
+            ("a", Article_Type.improper), ("", Article_Type.human), ("sir", Article_Type.human)]
 
 verbs = [("sat", Verb_Type.either, [Prepositions.on_, Prepositions.in_]),
          ("jumped", Verb_Type.animate, [Prepositions.on_, Prepositions.in_]),
@@ -55,7 +55,30 @@ def pick_preposition_from_verb(verb):
     chosen = random.choice(verb[2])
     if chosen is Prepositions.in_:
         return "in"
+    elif chosen is Prepositions.on_:
+        return "on"
+    else:
+        raise Exception("Oh No you forgot to set a string for a preposition value!! what a bummer.")
 
-noun = random.choice(nouns)
-article = pick_article_from_noun(noun[1])
-print("{0} {1}!".format(article[0], noun[0]))
+
+def sentence_1():
+    noun = random.choice(nouns)
+    article = pick_article_from_noun(noun[1])
+    verb = pick_verb_from_noun(noun[1])
+    preposition = pick_preposition_from_verb(verb)
+    noun2 = random.choice(nouns)
+    article2 = pick_article_from_noun(noun2[1])
+
+    return "{} {} {} {} {} {}!".format(article[0], noun[0], verb[0], preposition, article2[0], noun2[0])
+
+def sentence_2():
+    noun = random.choice(nouns)
+    article = pick_article_from_noun(noun[1])
+    verb = pick_verb_from_noun(noun[1])
+    preposition = pick_preposition_from_verb(verb)
+    noun2 = random.choice(nouns)
+
+    return "{} {} {} {} {}!".format(article[0], noun[0], verb[0], preposition, noun2[0])
+
+print(sentence_1())
+
