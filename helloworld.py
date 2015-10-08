@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import random
 from enum import Enum
 
